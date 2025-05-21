@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { View, TextInput, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { addTodo, updateTodo } from '../redux/todoSlice';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import Feather from 'react-native-vector-icons/Feather';
 import { RootState } from '../redux/store';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { NavigationProp } from '../utils/types';
+import AppLayout from '../assets/components/AppLayout';
 
 
 const AddTodoScreen = () => {
@@ -35,28 +36,30 @@ const AddTodoScreen = () => {
     };
 
     return (
-        <View style={styles.screen}>
-            <View style={styles.header}>
-                <TouchableOpacity onPress={() => navigation.goBack()}>
-                    <Ionicons name="arrow-back" size={24} color="black" />
-                </TouchableOpacity>
-                <Text style={styles.headerTitle}>{id ? 'Edit TODO' : 'Add TODO'}</Text>
-                <View style={{ width: 24 }} />
-            </View>
+        <AppLayout>
+            <View style={styles.screen}>
+                <View style={styles.header}>
+                    <TouchableOpacity onPress={() => navigation.goBack()}>
+                        <Feather name="chevron-left" size={24} color="black" />
+                    </TouchableOpacity>
+                    <Text style={styles.headerTitle}>{id ? 'Edit TODO' : 'Add TODO'}</Text>
+                    <View style={{ width: 24 }} />
+                </View>
 
-            <View style={styles.container}>
-                <TextInput
-                    placeholder="Enter your task"
-                    placeholderTextColor="#ccc"
-                    style={styles.input}
-                    value={title}
-                    onChangeText={setTitle}
-                />
-                <TouchableOpacity style={styles.button} onPress={handleSave}>
-                    <Text style={styles.buttonText}>{id ? 'Update' : 'Add'}</Text>
-                </TouchableOpacity>
+                <View style={styles.container}>
+                    <TextInput
+                        placeholder="Enter your task"
+                        placeholderTextColor="#ccc"
+                        style={styles.input}
+                        value={title}
+                        onChangeText={setTitle}
+                    />
+                    <TouchableOpacity style={styles.button} onPress={handleSave}>
+                        <Text style={styles.buttonText}>{id ? 'Update' : 'Add'}</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
-        </View>
+        </AppLayout>
     );
 };
 
@@ -71,8 +74,7 @@ const styles = StyleSheet.create({
     header: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingTop: 50,
-        paddingHorizontal: 20,
+        // paddingHorizontal: 20,
         paddingBottom: 15,
         backgroundColor: '#fff',
         justifyContent: 'space-between',
